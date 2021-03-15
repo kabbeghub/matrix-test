@@ -30,23 +30,23 @@ What are the functions in the app.js?
 
 Main function at the top for initiating all the functions below.
 
-changeDirection
+changeDirection  
     Changes the direction on the board depending on the next input
 
-validateDirection
+validateDirection  
     Validates that the direction is one of the four available
 
-processCommands
+processCommands  
     Goes through commands given and validates for every given command.
 
-checkCurrentPosition
+checkCurrentPosition  
     Keeps track of outofbounds.
 
-moveOnMatrix
+moveOnMatrix  
     Moves the object on the board backwards and forwards depending on the input.
 
-assert
+assert  
     small function for testing expected results against testing results. Throws errors.
 
-testCases
+testCases  
     Tests all different functions and some of their edgecases.
