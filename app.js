@@ -6,6 +6,32 @@
  */
 
 const exit = '0', moveForward = '1', moveBackwards = '2', rotateCW = 3, rotateCounterCW = 4;
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Main function
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+  
+  readline.question(`Please state the size of the table separated by a comma: `, (tableSize) => {
+    readline.question(`Please state the starting position separated by a comma: `, (startingPositions) => {
+        readline.question(`Please state the commands separated by a comma: `, (commandsGiven) => {
+            let tableSizeInts = tableSize.split(",");
+            //console.log(`Size of the table will be:  x = ${tableSizeInts[0]} & y = ${tableSizeInts[1]}`);
+            let startingPosition = startingPositions.split(",");
+            //console.log(`Starting position will be:  x = ${startingPosition[0]} & y = ${startingPosition[1]}`);
+            let currentX = startingPosition[0];
+            let currentY = startingPosition[1];
+            let currentDirection = 'north';
+            testCases();
+            let results = processCommands(commandsGiven.split(","), tableSizeInts[0], tableSizeInts[1], parseInt(currentX), parseInt(currentY), currentDirection);
+            console.log(`Position x: ${results[0]}, y: ${results[1]}. Last known direction: ${results[2]}`);
+        readline.close()
+        })
+  })
+});
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function changeDirection(currentD, inputValue){
     switch(currentD) {
@@ -139,43 +165,8 @@ function moveOnMatrix(element, currentX, currentY, currentDirection){
     }   
         tempMovements.push(currentX)
         tempMovements.push(currentY)
-    return [currentX, currentY];
+    return tempMovements;
 }
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Main function
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
-  
-  readline.question(`Please state the size of the table separated by a comma: `, (tableSize) => {
-    readline.question(`Please state the starting position separated by a comma: `, (startingPositions) => {
-        readline.question(`Please state the commands separated by a comma: `, (commandsGiven) => {
-            let tableSizeInts = tableSize.split(",");
-            //console.log(`Size of the table will be:  x = ${tableSizeInts[0]} & y = ${tableSizeInts[1]}`);
-            let startingPosition = startingPositions.split(",");
-            //console.log(`Starting position will be:  x = ${startingPosition[0]} & y = ${startingPosition[1]}`);
-            let currentX = startingPosition[0];
-            let currentY = startingPosition[1];
-            let currentDirection = 'north';
-            testCases();
-            let results = processCommands(commandsGiven.split(","), tableSizeInts[0], tableSizeInts[1], parseInt(currentX), parseInt(currentY), currentDirection);
-            console.log(`Position x: ${results[0]}, y: ${results[1]}. Last known direction: ${results[2]}`);
-        readline.close()
-        })
-  })
-});
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Assert
